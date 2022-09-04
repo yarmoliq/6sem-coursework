@@ -1,0 +1,7 @@
+<button [routerLink]="['/rfp/create']"
+mat-stroked-button color="warning" style="margin: 10px;"
+*ngIf="showCreateRfpBtn">
+    Создать заявку
+</button>
+
+<app-rfp-list [rfps]="rfps"></app-rfp-list>

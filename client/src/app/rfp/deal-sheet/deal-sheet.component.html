@@ -1,0 +1,47 @@
+<mat-card>
+  <div>
+    <mat-form-field>
+      <mat-label>Дата создания</mat-label>
+      <input matInput value="{{ dealSheet.created | date:'medium' }}" disabled>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Заказчик</mat-label>
+      <input matInput value="{{ dealSheet.customer?.userName }}" disabled>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Поставщик</mat-label>
+      <input matInput value="{{ dealSheet.supplier?.userName }}" disabled>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Место назначения</mat-label>
+      <input matInput value="{{ dealSheet.destinationAddress }}" disabled>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Место отправки</mat-label>
+      <input matInput value="{{ dealSheet.departureAddress }}" disabled>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Объём</mat-label>
+      <input matInput value="{{ dealSheet.volume }}" disabled>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Тариф</mat-label>
+      <input matInput value="{{ dealSheet.rate }}" disabled>
+    </mat-form-field>
+  </div>
+  <button mat-icon-button class="mx-1 flex-shrink-2 col-auto" (click)="downloadDealSheet()">
+    <mat-icon>download</mat-icon>
+  </button>
+</mat-card>

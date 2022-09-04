@@ -1,0 +1,28 @@
+<div>
+  <mat-form-field>
+    <mat-label>Commodity Type</mat-label>
+    <input matInput [(ngModel)]="commodity">
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field>
+    <mat-label>Commodity Volume</mat-label>
+    <input matInput [(ngModel)]="volume">
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field>
+    <mat-label>Location</mat-label>
+    <input matInput [(ngModel)]="location">
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field>
+    <mat-label>Comments</mat-label>
+    <input matInput [(ngModel)]="comments">
+  </mat-form-field>
+</div>
+
+<div>
+  <button mat-button color="accent" (click)="onClick()">Создать</button>
+</div>

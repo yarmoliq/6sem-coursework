@@ -1,0 +1,62 @@
+<table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+    class="mat-elevation-z8">
+
+  <!-- Created Column -->
+  <ng-container matColumnDef="created">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Создано
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.created | date:'short'}} </td>
+  </ng-container>
+
+  <!-- Volume Column -->
+  <ng-container matColumnDef="volume">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Объём
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.volume}} </td>
+  </ng-container>
+
+  <!-- Cost Column -->
+  <ng-container matColumnDef="rate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      Тариф
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.rate}} </td>
+  </ng-container>
+
+  <!-- Location Column -->
+  <ng-container matColumnDef="location">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      Местоположение
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="comments">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      Комментарий
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.comments}} </td>
+  </ng-container>
+
+  <!-- controls Column -->
+  <ng-container matColumnDef="controls">
+    <th mat-header-cell *matHeaderCellDef>
+      Управление
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button (click)="onOfferDeleteClick(element)"
+      *ngIf="element.supplier?.userName === currentUser?.userName && !disableAllEditing">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-icon-button (click)="onAcceptOfferClick(element)"
+      *ngIf="customer?.userName === currentUser?.userName && !disableAllEditing">
+        <mat-icon>add_shopping_cart</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

@@ -1,0 +1,78 @@
+<div>
+  <mat-form-field>
+    <mat-label>Дата создания</mat-label>
+    <input matInput value="{{ rfp?.created | date:'medium' }}" disabled>
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field>
+    <mat-label>Статус</mat-label>
+    <input matInput value="{{ rfpStatusDictionary.get(rfp.status) }}" disabled>
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field>
+    <mat-label>Покупатель</mat-label>
+    <input matInput value="{{ rfp.customer?.userName }}" disabled>
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field>
+    <mat-label>Ресурс</mat-label>
+    <input matInput value="{{ rfp.commodity }}" disabled>
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field>
+    <mat-label>Объём</mat-label>
+    <input matInput value="{{ rfp.volume }}" disabled>
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field>
+    <mat-label>Местоположение</mat-label>
+    <input matInput value="{{ rfp.location }}" disabled>
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field>
+    <mat-label>комментарий</mat-label>
+    <textarea matInput name="message"
+    [(ngModel)]="newCommentText"
+    [disabled]="!enableEditComment || disableAllEditing"></textarea>
+  </mat-form-field>
+</div>
+<div style="margin-bottom: 20px;">
+  <button mat-button color="accent"
+  (click)="onUpdatedCommentClick()"
+  [disabled]="newCommentText === rfp.comments || disableAllEditing"
+  *ngIf="enableEditComment"
+  >Сохранить</button>
+</div>
+
+<app-offers-table
+[offers]="rfp?.offers"
+[customer]="rfp.customer"
+[disableAllEditing]="disableAllEditing"
+style="margin: 20px; width: fit-content;"
+></app-offers-table>
+
+<mat-expansion-panel [expanded]="panelOpenState"
+style="margin: 20px; width: fit-content;"
+*ngIf="enableCreateOfferPanel && !disableAllEditing">
+
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Создать предложение
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <app-offer-create
+    (createOfferEvent)="addOfferToList($event)"
+    [rfpId]="rfp.id"></app-offer-create>
+</mat-expansion-panel>
+
+<app-deal-sheet [dealSheet]="rfp.dealSheet"
+style="margin: 20px; width: fit-content;"
+*ngIf="rfp.dealSheet !== null"
+></app-deal-sheet>
